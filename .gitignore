@@ -1,0 +1,11 @@
+frigorifico-dashboard.exe
+*.exe
+.env
+tmp_cleanup/
+.vercel/
+
+agente.json
+pendentes.jsonl
+etiquetas/
+agente.log
+iniciar-agente-oculto.vbs

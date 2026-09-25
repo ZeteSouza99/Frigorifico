@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Pesagem — Frigorífico</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="titulo">
+      <span class="logo"></span>
+      <div>
+        <h1>Painel de Pesagem</h1>
+        <p class="subtitulo">Frigorífico — acompanhamento diário do gado</p>
+      </div>
+    </div>
+    <div class="controles">
+      <input type="date" id="data" title="Escolha o dia" />
+      <button id="atualizar" title="Atualizar agora">⟳ Atualizar</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="cards">
+      <article class="card destaque">
+        <span class="card-rotulo">Média de peso do dia</span>
+        <div class="card-valor"><span id="mediaPeso">—</span><small> kg</small></div>
+        <div class="card-extra">
+          <span id="mediaArroba">—</span>
+          <span id="condicao" class="badge">—</span>
+        </div>
+      </article>
+      <article class="card">
+        <span class="card-rotulo">Nº de pesagens</span>
+        <div class="card-valor"><span id="totalPesagens">—</span></div>
+        <div class="card-extra">registradas no dia</div>
+      </article>
+      <article class="card">
+        <span class="card-rotulo">Maior peso</span>
+        <div class="card-valor alto"><span id="maiorPeso">—</span><small> kg</small></div>
+        <div class="card-extra">animal mais pesado</div>
+      </article>
+      <article class="card">
+        <span class="card-rotulo">Menor peso</span>
+        <div class="card-valor baixo"><span id="menorPeso">—</span><small> kg</small></div>
+        <div class="card-extra">animal mais leve</div>
+      </article>
+    </section>
+
+    <section class="painel">
+      <h2>Média de pesagem por horário <small>(kg)</small></h2>
+      <div id="grafico" class="grafico"></div>
+      <p id="graficoVazio" class="vazio" hidden>Nenhuma pesagem registrada neste dia.</p>
+    </section>
+
+    <section class="colunas">
+      <div class="painel">
+        <h2>Registrar pesagem</h2>
+        <form id="formPesagem">
+          <label>
+            Peso (kg) *
+            <input type="number" id="peso" min="1" max="2000" step="0.1" required placeholder="ex.: 487,5" />
+          </label>
+          <label>
+            Brinco / identificação
+            <input type="text" id="brinco" maxlength="30" placeholder="ex.: BR-25-014" />
+          </label>
+          <button type="submit">＋ Registrar</button>
+          <p id="msgForm" class="msg" hidden></p>
+        </form>
+        <div class="legenda">
+          <p><strong>Classificação da média (peso vivo):</strong></p>
+          <p><span class="dot magro"></span> Magro &lt; 400 kg &nbsp;
+             <span class="dot medio"></span> Médio 400–479 kg &nbsp;
+             <span class="dot gordo"></span> Gordo ≥ 480 kg</p>
+        </div>
+      </div>
+
+      <div class="painel">
+        <h2>Últimas pesagens do dia</h2>
+        <table>
+          <thead>
+            <tr><th>Hora</th><th>Brinco</th><th class="num">Peso (kg)</th><th class="num">@ (arroba)</th></tr>
+          </thead>
+          <tbody id="tabelaPesagens"></tbody>
+        </table>
+        <p id="tabelaVazia" class="vazio" hidden>Sem registros para exibir.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Atualização automática a cada 30&nbsp;segundos · Backend em Go + Neon (PostgreSQL)</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

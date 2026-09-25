@@ -1,0 +1,13 @@
+frigorifico-dashboard.exe
+*.exe
+.env
+tmp_cleanup/
+
+agente/
+agente.json
+pendentes.jsonl
+etiquetas/
+etiqueta.zpl
+agente.log
+iniciar-agente-oculto.vbs
+instalar-inicializacao.ps1
